@@ -1,0 +1,60 @@
+#{extends 'main.html' /}
+#{set title:'Search' /}
+
+<div id="searchBox">
+#{form @Application.search() , id:'searchForm'  }
+  <input class="search" type="text" name="stringSearched" id="stringSearched">
+  <input class="submit" type="submit" value="search">
+#{/form}
+</div>
+
+
+<div id="result">
+  <div id="content">
+  <ul>
+                  #{list repositories.repositories, as:'repository'}
+                      
+                          <li>
+                            <h2><a href="@{Application.showRepository(repository.owner,repository.name)}">${repository.name} <span style="font-style:italic">(${repository.owner})</span></a></h2>
+                            
+                            <p>${repository.description}</p> 
+                          </li>
+                          
+                  #{/list}
+  </ul> 
+  </div>
+</div>
+
+<div id="loader"></div>    
+    
+<script type="text/javascript" charset="utf-8">   
+    
+   $('#searchForm').ajaxForm({  
+      
+          beforeSerialize: function($form, options) { 
+            
+              $('#loader').fogLoader({
+              animated: true
+              });
+                     
+          }   
+          ,
+          success: function(response) { 
+            
+              $('#loader').fogLoader('close');
+            
+              var $response = $(response);
+             
+               $('#result').html($response.find('#content'));
+               
+                
+          } 
+    
+    }); 
+    
+    $(".submit").button();
+    
+     
+    
+     
+</script>

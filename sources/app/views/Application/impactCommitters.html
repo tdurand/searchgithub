@@ -1,0 +1,13 @@
+<ul>
+  %{
+      for (Map.Entry<String,Float> entry : usersCommits.entrySet())
+    {
+      
+       out.print('<li>'+entry.getKey()+' ('+ entry.getValue()+ ' %)</li>');
+  
+    }
+ }%
+
+</ul>
+  
+
