@@ -1,0 +1,3 @@
+.h3 Notes
+
+.p Petite appli play! réalisé dans la cadre d'une candidature faites à Zenexity pour un stage
